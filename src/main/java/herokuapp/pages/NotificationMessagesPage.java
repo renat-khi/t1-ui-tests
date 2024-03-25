@@ -9,10 +9,11 @@ public class NotificationMessagesPage implements GeneralElements {
 
     SelenideElement popupNotification = $x(".//div[@id='flash']");
 
-    public void clickLinkAndCheckNotification(String linkName, String expectedNotificationMessage, int maximumNumberOfClicks) {
+    public void clickLinkAndClosePopupWithUnexpectedNotification(String linkName, String expectedNotificationMessage, int maximumNumberOfClicks) {
         int iterationCount = 0;
         String actualNotificationMessage;
         do {
+            clickOnLinkByName("×");
             clickOnLinkByName(linkName);
             actualNotificationMessage = popupNotification.text();
             iterationCount++;
