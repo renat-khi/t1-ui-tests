@@ -8,13 +8,12 @@ public class DropdownPage {
 
     SelenideElement dropdown = $x(".//select[@id='dropdown']");
 
-    public void selectDropdownByText(String text) {
-        dropdown.selectOption(text);
+    public void selectInDropdown(String value) {
+        dropdown.selectOption(value);
     }
 
-    public void printSelectedTextInDropdown() {
-        String selectedText = dropdown.getSelectedOptionText();
-        System.out.println("текущий текст в выпадающем списке: " + selectedText);
+    public String getValueInDropdown() {
+        return dropdown.getSelectedOptionText();
     }
 
 }

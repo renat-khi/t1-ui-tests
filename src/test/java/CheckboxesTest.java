@@ -1,14 +1,13 @@
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class CheckboxesTest extends BaseUITestHerokuApp {
 
-    @Test
-    public void checkStatusCheckboxes() {
+    @ParameterizedTest(name = "Order Of click on checkboxes #{index}")
+    @ValueSource(strings = {"1:2", "2:1"})
+    public void checkWorkCheckboxes(String orderOfClick) {
         herokuApp.mainPage.clickOnLinkByName("Checkboxes");
-        herokuApp.checkboxesPage.clickOnCheckboxByNumber(1);
-        herokuApp.checkboxesPage.clickOnCheckboxByNumber(2);
-        herokuApp.checkboxesPage.printStatusCheckboxByNumber(1);
-        herokuApp.checkboxesPage.printStatusCheckboxByNumber(2);
+        herokuApp.checkboxesPage.clickAndCheckCorrectStatusOfCheckboxes(orderOfClick);
     }
 
 }
