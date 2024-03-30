@@ -1,33 +1,14 @@
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 public class StatusCodesTest extends BaseUITestHerokuApp {
 
-    @Test
-    public void checkTextStatusCodes200() {
+    @ParameterizedTest(name = "Check that page contains status code #{index}")
+    @ValueSource(strings = {"200", "301", "404", "500"})
+    public void checkStatusCodes(String statusCode) {
         herokuApp.mainPage.clickOnLinkByName("Status Codes");
-        herokuApp.statusCodesPage.clickOnLinkByName("200");
-        herokuApp.statusCodesPage.printTextInBlockStatusCodes();
-    }
-
-    @Test
-    public void checkTextStatusCodes301() {
-        herokuApp.mainPage.clickOnLinkByName("Status Codes");
-        herokuApp.statusCodesPage.clickOnLinkByName("301");
-        herokuApp.statusCodesPage.printTextInBlockStatusCodes();
-    }
-
-    @Test
-    public void checkTextStatusCodes404() {
-        herokuApp.mainPage.clickOnLinkByName("Status Codes");
-        herokuApp.statusCodesPage.clickOnLinkByName("404");
-        herokuApp.statusCodesPage.printTextInBlockStatusCodes();
-    }
-
-    @Test
-    public void checkTextStatusCodes500() {
-        herokuApp.mainPage.clickOnLinkByName("Status Codes");
-        herokuApp.statusCodesPage.clickOnLinkByName("500");
-        herokuApp.statusCodesPage.printTextInBlockStatusCodes();
+        herokuApp.statusCodesPage.clickOnLinkByName(statusCode);
+        herokuApp.statusCodesPage.checkThatOnPageContainsText(statusCode);
     }
 
 }

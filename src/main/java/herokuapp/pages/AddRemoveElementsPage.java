@@ -1,31 +1,29 @@
 package herokuapp.pages;
 
 import com.codeborne.selenide.ElementsCollection;
-import herokuapp.pages.elements.GeneralElements;
+import herokuapp.steps.GeneralSteps;
+import io.qameta.allure.Step;
 
-import java.util.Random;
-
+import static com.codeborne.selenide.CollectionCondition.sizeGreaterThanOrEqual;
 import static com.codeborne.selenide.Selenide.$$x;
 
-public class AddRemoveElementsPage implements GeneralElements {
+public class AddRemoveElementsPage implements GeneralSteps {
 
-    ElementsCollection allButtonsDelete = $$x(".//button[text()='Delete']");
+    ElementsCollection allDeleteButtons = $$x(".//button[text()='Delete']");
 
-    public void clickButtonNTimesAndPrintTextOfElementThatAppears(String buttonName, int numberOfTimesClickButton) {
-        for (int i = 0; i < numberOfTimesClickButton; i++) {
-            clickOnButtonByName(buttonName);
-            String lastButtonDelete = allButtonsDelete.last().getText();
-            System.out.println("после нажатия кнопки " + buttonName + " появился новый элемент с текстом " + lastButtonDelete);
+    @Step("Нажать на кнопку Add '{numberOfClicks}' раз")
+    public void clickAddButton(int numberOfClicks) {
+        for (int i = 0; i < numberOfClicks; i++) {
+            clickOnButtonByName("Add Element");
         }
     }
 
-    public void clickRandomButtonsDeleteNTimesAndPrintCountRemainingButtonAndText(int numberOfTimesClickRandomButtonsDelete) {
-        for (int i = 0; i < numberOfTimesClickRandomButtonsDelete; i++) {
-            int random = new Random().nextInt(allButtonsDelete.size());
-            allButtonsDelete.get(random).click();
+    @Step("Нажать на кнопку Delete '{numberOfClicks}' раз")
+    public void clickDeleteButton(int numberOfClicks) {
+        allDeleteButtons.shouldHave(sizeGreaterThanOrEqual(numberOfClicks));
+        for (int i = 0; i < numberOfClicks; i++) {
+            allDeleteButtons.first().click();
         }
-        System.out.println("Оставшееся количество кнопок Delete равно: " + allButtonsDelete.size());
-        allButtonsDelete.forEach(deleteButton -> System.out.println("кнопка Delete c текстом: " + deleteButton.getText()));
     }
 
 }

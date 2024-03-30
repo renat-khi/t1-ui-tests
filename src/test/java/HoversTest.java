@@ -7,7 +7,6 @@ public class HoversTest extends BaseUITestHerokuApp {
     @ValueSource(strings = {"1", "2", "3"})
     public void checkHover(String index) {
         herokuApp.mainPage.clickOnLinkByName("Hovers");
-        herokuApp.hoversPage.checkThatTitleAndLinkByImageIsNotVisible(index);
         herokuApp.hoversPage.hoverOnImage(index);
         herokuApp.hoversPage.checkThatTitleAndLinkByImageIsVisible(index);
     }

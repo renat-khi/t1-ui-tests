@@ -1,12 +1,13 @@
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.RepeatedTest;
 
 public class NotificationMessagesTest extends BaseUITestHerokuApp {
 
-    @Test
+    @RepeatedTest(5)
     public void checkNotificationMessage() {
         herokuApp.mainPage.clickOnLinkByName("Notification Messages");
-        herokuApp.notificationMessage.clickLinkAndClosePopupWithUnexpectedNotification("Click here",
-                "Action successful", 10);
+        herokuApp.notificationMessage.clickOnLinkByName("×");
+        herokuApp.notificationMessage.clickOnLinkByName("Click here");
+        herokuApp.notificationMessage.checkNotificationIsSuccessful();
     }
 
 }

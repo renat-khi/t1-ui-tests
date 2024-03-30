@@ -1,7 +1,7 @@
 package herokuapp.pages;
 
-import herokuapp.pages.elements.GeneralElements;
+import herokuapp.steps.GeneralSteps;
 
-public class MainPage implements GeneralElements {
+public class MainPage implements GeneralSteps {
 
 }

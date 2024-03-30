@@ -1,17 +1,18 @@
 package herokuapp.pages;
 
 import com.codeborne.selenide.ElementsCollection;
-import com.codeborne.selenide.Selenide;
+import herokuapp.steps.GeneralSteps;
+import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.CollectionCondition.size;
 import static com.codeborne.selenide.Selenide.$$x;
 
-public class DisappearingElementsPage {
+public class DisappearingElementsPage implements GeneralSteps {
 
     ElementsCollection elements = $$x(".//li");
 
-    public void refreshPageAndCheckThatFiveElementsArePresent() {
-        Selenide.refresh();
+    @Step("Проверить что отображаются пять элементов")
+    public void checkThatFiveElementsArePresent() {
         elements.shouldHave(size(5));
     }
 

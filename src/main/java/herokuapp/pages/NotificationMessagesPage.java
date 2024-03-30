@@ -1,24 +1,20 @@
 package herokuapp.pages;
 
 import com.codeborne.selenide.SelenideElement;
-import herokuapp.pages.elements.GeneralElements;
+import herokuapp.steps.GeneralSteps;
+import io.qameta.allure.Step;
 
+import static com.codeborne.selenide.Condition.text;
+import static com.codeborne.selenide.Condition.visible;
 import static com.codeborne.selenide.Selenide.$x;
 
-public class NotificationMessagesPage implements GeneralElements {
+public class NotificationMessagesPage implements GeneralSteps {
 
     SelenideElement popupNotification = $x(".//div[@id='flash']");
 
-    public void clickLinkAndClosePopupWithUnexpectedNotification(String linkName, String expectedNotificationMessage, int maximumNumberOfClicks) {
-        int iterationCount = 0;
-        String actualNotificationMessage;
-        do {
-            clickOnLinkByName("×");
-            clickOnLinkByName(linkName);
-            actualNotificationMessage = popupNotification.text();
-            iterationCount++;
-        } while (!actualNotificationMessage.contains(expectedNotificationMessage) && iterationCount < maximumNumberOfClicks);
-        System.out.println("ссылка " + linkName + " нажата " + iterationCount + " раз");
+    @Step("Проверить что отображается уведомление 'Action successful'")
+    public void checkNotificationIsSuccessful() {
+        popupNotification.shouldHave(text("Action successful")).shouldBe(visible);
     }
 
 }
