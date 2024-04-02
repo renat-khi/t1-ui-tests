@@ -5,25 +5,18 @@ import herokuapp.pages.*;
 public class HerokuApp {
 
     public MainPage mainPage;
-    public CheckboxesPage checkboxesPage;
-    public DropdownPage dropdownPage;
-    public DisappearingElementsPage disappearingElementsPage;
-    public InputsPage inputsPage;
-    public HoversPage hoversPage;
-    public NotificationMessagesPage notificationMessage;
-    public AddRemoveElementsPage addRemoveElementsPage;
-    public StatusCodesPage statusCodesPage;
+    public DragAndPropPage dragAndPropPage;
+    public ContextMenuPage contextMenuPage;
+    public InfiniteScrollPage infiniteScrollPage;
+    public KeyPressesPage keyPressesPage;
 
     public HerokuApp() {
+        keyPressesPage = new KeyPressesPage();
+        infiniteScrollPage = new InfiniteScrollPage();
+        contextMenuPage= new ContextMenuPage();
+        dragAndPropPage = new DragAndPropPage();
         mainPage = new MainPage();
-        checkboxesPage = new CheckboxesPage();
-        dropdownPage = new DropdownPage();
-        disappearingElementsPage = new DisappearingElementsPage();
-        inputsPage = new InputsPage();
-        hoversPage = new HoversPage();
-        notificationMessage = new NotificationMessagesPage();
-        addRemoveElementsPage = new AddRemoveElementsPage();
-        statusCodesPage = new StatusCodesPage();
+
     }
 
 }

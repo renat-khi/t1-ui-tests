@@ -1,6 +1,6 @@
 package herokuapp.steps;
 
-import com.codeborne.selenide.Selenide;
+import com.codeborne.selenide.SelenideElement;
 import io.qameta.allure.Step;
 
 import static com.codeborne.selenide.Condition.visible;
@@ -16,19 +16,14 @@ public interface GeneralSteps {
         $x(format(".//a[text()='%s']", linkName)).click();
     }
 
-    @Step("Нажать на кнопку '{buttonName'")
-    default void clickOnButtonByName(String buttonName) {
-        $x(format(".//button[text()='%s']", buttonName)).click();
+    @Step("Получить элемент по тексту '{text}'")
+    default SelenideElement getElementByText(String text) {
+        return $(withText(text));
     }
 
-    @Step("Обновить страницу")
-    default void refreshPage() {
-        Selenide.refresh();
-    }
-
-    @Step("Проверить что на странице содержится текст '{text}'")
-    default void checkThatOnPageContainsText(String text) {
-        $(withText(text)).shouldBe(visible);
+    @Step("Проверить что текст '{text}' отображается на странице")
+    default void checkTextIsVisibleOnPage(String text) {
+        getElementByText(text).shouldBe(visible);
     }
 
 }
