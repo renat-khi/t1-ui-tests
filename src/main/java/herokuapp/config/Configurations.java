@@ -8,7 +8,7 @@ import java.util.Map;
 public interface Configurations {
 
     default void selenoidConfig() {
-        Configuration.remote = "http://158.160.157.254:4444/wd/hub";
+        Configuration.remote = "http://51.250.71.242:4444/wd/hub";
         Map<String, Object> selenoidOptions = new HashMap<>();
         selenoidOptions.put("enableVNC", true);
         selenoidOptions.put("browserName", "chrome");
